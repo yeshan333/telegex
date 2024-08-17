@@ -1,6 +1,6 @@
 defmodule Telegex.Caller.Adapter do
   @moduledoc "An adapter to help HTTP clients implement callers."
-
+  require Logger
   alias Telegex.{Response, Global}
 
   defmacro __using__(_opts) do
@@ -43,6 +43,7 @@ defmodule Telegex.Caller.Adapter do
 
   @spec struct_response(String.t() | map) :: Response.t()
   def struct_response(json) when is_binary(json) do
+    Logger.info("Would decode Response: #{json}")
     data = Jason.decode!(json, keys: :atoms)
 
     struct(Response, data)
