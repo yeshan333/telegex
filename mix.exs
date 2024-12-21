@@ -1,7 +1,7 @@
 defmodule Telegex.MixProject do
   use Mix.Project
 
-  @version "1.9.0-dev"
+  @version "1.10.0-dev"
   @description "A Telegram bot framework, with its client-side based on data and code generation, boasts unparalleled adaptation speed and correctness for new versions."
 
   def project do
@@ -62,13 +62,13 @@ defmodule Telegex.MixProject do
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
       {:ex_doc, "~> 0.34", only: :dev, runtime: false},
       {:httpoison, "~> 2.2", optional: true, only: [:dev, :test]},
-      {:finch, "~> 0.18.0", optional: true, only: [:dev, :test]},
+      {:finch, "~> 0.19.0", optional: true, only: [:dev, :test]},
       {:multipart, "~> 0.4.0", optional: true, only: [:dev, :test]},
       {:plug, "~> 1.16", optional: true, only: [:dev, :test]},
       {:plug_cowboy, "~> 2.7", optional: true, only: [:dev, :test]},
       {:remote_ip, "~> 1.2", optional: true, only: [:dev, :test]},
       {:bandit, "~> 1.5", optional: true, only: [:dev, :test]},
-      {:floki, "~> 0.36.2", only: [:dev, :test]},
+      {:floki, "~> 0.36.3", only: [:dev, :test]},
       {:typed_struct, "~> 0.3.0"},
       {:jason, "~> 1.4"}
     ]
