@@ -1,5 +1,6 @@
 defmodule Telegex.Caller.Adapter.HTTPoison do
   @moduledoc "HTTPoison based caller adapter."
+  require Logger
 
   use Telegex.Caller.Adapter
 
@@ -11,7 +12,11 @@ defmodule Telegex.Caller.Adapter.HTTPoison do
     url = build_url(method)
     json_body = params |> Enum.into(%{}) |> Jason.encode!()
 
-    url |> request(json_body, opts) |> parse_response()
+    resp = url |> request(json_body, opts)
+
+    Logger.debug("Telegram API Response: #{inspect(resp)}")
+
+    resp |> parse_response()
   end
 
   defp request(url, json_body, _opts) do

@@ -43,7 +43,7 @@ defmodule Telegex.Caller.Adapter do
 
   @spec struct_response(String.t() | map) :: Response.t()
   def struct_response(json) when is_binary(json) do
-    Logger.info("Would decode Response: #{json}")
+    Logger.info("Would decode Telegram Response: #{json}")
     data = Jason.decode!(json, keys: :atoms)
 
     struct(Response, data)
