@@ -43,10 +43,16 @@ defmodule Telegex.Caller.Adapter do
 
   @spec struct_response(String.t() | map) :: Response.t()
   def struct_response(json) when is_binary(json) do
-    Logger.info("Would decode Telegram Response: #{json}")
-    data = Jason.decode!(json, keys: :atoms)
-
-    struct(Response, data)
+    case Jason.decode(json, keys: :atoms) do
+      {:ok, data} -> struct(Response, data)
+      {:error, desc} ->
+        Logger.error("Would decode Telegram Bad Response: #{json}")
+        %Response{
+          ok: false,
+          error_code: 500,
+          description: desc
+       }
+    end
   end
 
   def struct_response(%{ok: ok, error_code: error_code, description: description}) do
